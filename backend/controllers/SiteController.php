@@ -30,7 +30,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'pizzas'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -120,5 +120,15 @@ class SiteController extends Controller
         return $this->render('signup', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * Displays Pizza page.
+     *
+     * @return string
+     */
+    public function actionPizzas()
+    {
+        return $this->render('pizzas');
     }
 }
