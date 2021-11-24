@@ -144,6 +144,15 @@ class SiteController extends Controller
      */
     public function actionCreate() {
 
-        return $this->render('create');
+        $pizzas = new Pizzas();
+
+        if (Yii::$app->request->post()) {
+            $pizzas->load(Yii::$app->request->post());
+            if ($pizzas->save()) {
+                $this->redirect('pizzas');
+            }
+        }
+
+        return $this->render('create', ['pizza' => $pizzas]);
     }
 }
