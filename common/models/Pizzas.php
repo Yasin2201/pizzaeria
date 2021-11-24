@@ -1,6 +1,6 @@
 <?php
 
-namespace backend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
@@ -12,7 +12,7 @@ class Pizzas extends ActiveRecord
     {
         return [
             ['name', 'required'],
-            ['name', 'unique', 'targetClass' => '\backend\models\Pizzas', 'message' => 'This pizza already exists.'],
+            ['name', 'unique', 'targetClass' => '\common\models\Pizzas', 'message' => 'This pizza already exists.'],
             ['name', 'string', 'min' => 2, 'max' => 255],
 
             ['description', 'required'],
