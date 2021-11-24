@@ -11,7 +11,12 @@ class Pizzas extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'description'], 'required'],
+            ['name', 'required'],
+            ['name', 'unique', 'targetClass' => '\backend\models\Pizzas', 'message' => 'This pizza already exists.'],
+            ['name', 'string', 'min' => 2, 'max' => 255],
+
+            ['description', 'required'],
+            ['description', 'string', 'min' => 2, 'max' => 255],
         ];
     }
 }
