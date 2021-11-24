@@ -9,6 +9,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use backend\models\SignupForm;
+use backend\models\Pizzas;
 
 
 /**
@@ -129,6 +130,10 @@ class SiteController extends Controller
      */
     public function actionPizzas()
     {
-        return $this->render('pizzas');
+        $pizzas = Pizzas::find()->all();
+
+        return $this->render('pizzas', [
+            'pizza' => $pizzas,
+        ]);
     }
 }

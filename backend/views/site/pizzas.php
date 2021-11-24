@@ -6,4 +6,5 @@ $this->title = 'My Yii Application';
 ?>
 <div class="site-pizzas">
     <h1>Pizzas Page!</h1>
+    <?= var_dump($pizza) ?>
 </div>
