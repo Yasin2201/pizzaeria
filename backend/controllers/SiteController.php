@@ -31,7 +31,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'pizzas', 'create'],
+                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -154,5 +154,14 @@ class SiteController extends Controller
         }
 
         return $this->render('create', ['pizza' => $pizzas]);
+    }
+
+    /**
+     * Displays Edit Pizza page.
+     *
+     * @return string
+     */
+    public function actionEdit() {
+        return $this->render('edit');
     }
 }
