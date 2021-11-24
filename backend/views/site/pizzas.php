@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 
@@ -6,6 +7,8 @@ $this->title = 'My Yii Application';
 ?>
 <div class="site-pizzas">
     <h1>Pizzas Page</h1>
+
+<span><?= Html::a('Create', ['/site/create'], ['class' => 'btn btn-primary']) ?></span>
 
 <table class="table table-hover">
   <thead>
