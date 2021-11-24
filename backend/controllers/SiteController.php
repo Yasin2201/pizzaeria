@@ -9,7 +9,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use backend\models\SignupForm;
-use backend\models\Pizzas;
+use common\models\Pizzas;
 
 
 /**
@@ -31,7 +31,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit'],
+                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -142,7 +142,8 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionCreate() {
+    public function actionCreate()
+    {
 
         $pizzas = new Pizzas();
 
@@ -161,7 +162,24 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionEdit() {
-        return $this->render('edit');
+    public function actionEdit($id)
+    {
+        $pizza = Pizzas::findOne($id);
+        if ($pizza->load(Yii::$app->request->post()) && $pizza->save()) {
+            $this->redirect('pizzas');
+        }
+        return $this->render('edit', ['pizza' => $pizza]);
+    }
+
+    public function actionDelete($id)
+    {
+        $pizza = Pizzas::findOne($id);
+
+        if (!$pizza) {
+            return $this->actionPizzas();
+        }
+
+        $pizza->delete();
+        return $this->actionPizzas();
     }
 }
