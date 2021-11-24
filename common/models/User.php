@@ -210,4 +210,9 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+
+    public function beforeSave($insert) {
+        $this->status = 10;
+        return parent::beforeSave($insert);
+    }
 }
