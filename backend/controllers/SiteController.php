@@ -133,7 +133,7 @@ class SiteController extends Controller
         $pizzas = Pizzas::find()->all();
 
         return $this->render('pizzas', [
-            'pizza' => $pizzas,
+            'pizzas' => $pizzas,
         ]);
     }
 }
