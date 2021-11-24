@@ -16,6 +16,7 @@ $this->title = 'My Yii Application';
         <th scope="col">ID</th>
         <th scope="col">Name</th>
         <th scope="col">Description</th>
+        <th scope="col">Actions</th>
         </tr>
   </thead>
   <tbody>
@@ -24,6 +25,8 @@ $this->title = 'My Yii Application';
                 <th scope="row"><?= $pizza->id; ?></th>
                 <td><?= $pizza->name; ?></td>
                 <td><?= $pizza->description; ?></td>
+                <td><?= Html::a('Edit', ['edit', 'id' => $pizza->id], ['class' => 'btn btn-primary']) ?> </td>
+                <td><?= Html::a('Delete', ['delete', 'id' => $pizza->id], ['class' => 'btn btn-danger']) ?> </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
