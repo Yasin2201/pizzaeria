@@ -7,7 +7,7 @@ use yii\helpers\Html;
 $this->title = 'My Yii Application';
 ?>
 
-<div class="site-pizzas">
+<div class="site-create">
     <h1>Create Pizza</h1>
 
     <?php $form = ActiveForm::begin() ?>
