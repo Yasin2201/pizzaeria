@@ -31,7 +31,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit', 'delete'],
+                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit', 'delete', 'orders'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -171,6 +171,11 @@ class SiteController extends Controller
         return $this->render('edit', ['pizza' => $pizza]);
     }
 
+    /**
+     * Deletes pizza from list.
+     *
+     * @return string
+     */
     public function actionDelete($id)
     {
         $pizza = Pizzas::findOne($id);
@@ -181,5 +186,14 @@ class SiteController extends Controller
 
         $pizza->delete();
         return $this->actionPizzas();
+    }
+
+    /**
+     * Displays orders page.
+     *
+     * @return string
+     */
+    public function actionOrders() {
+        return $this->render('orders');
     }
 }
