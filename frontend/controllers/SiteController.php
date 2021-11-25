@@ -263,4 +263,8 @@ class SiteController extends Controller
         $pizza = Pizzas::findOne($id);
         return $this->render('view', ['pizza' => $pizza]);
     }
+
+    public function actionOrder($id) {
+        return $this->render('order');
+    }
 }
