@@ -201,6 +201,9 @@ class SiteController extends Controller
     }
 
     public function actionView($id) {
-        return $this->render('view');
+        $order = Orders::findOne($id);
+        $pizza = Pizzas::findOne($order->pizza_id);
+
+        return $this->render('view', ['order' => $order, 'pizza' => $pizza]);
     }
 }
