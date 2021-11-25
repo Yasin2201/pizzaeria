@@ -16,6 +16,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use common\models\Pizzas;
+use frontend\models\Orders;
 
 /**
  * Site controller
@@ -265,6 +266,11 @@ class SiteController extends Controller
     }
 
     public function actionOrder($id) {
-        return $this->render('order');
+        $orders = new Orders();
+        if ($orders->load(Yii::$app->request->post()) && $orders->save()) {
+            Yii::$app->session->setFlash('success', 'Your Order Has Been Placed!');
+            return $this->actionIndex();
+        }
+        return $this->render('order', ['orders' => $orders, 'pizza_id' => $id]);
     }
 }
