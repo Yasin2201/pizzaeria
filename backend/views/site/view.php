@@ -18,12 +18,12 @@ $this->title = "My Yii Application";
         </thead>
         <tbody>
             <tr>
-                <th><?= $order->id;?></th>
-                <td><?= $order->first_name;?></td>
-                <td><?= $order->last_name;?></td>
-                <td><?= $order->contact_num;?></td>
-                <td><?= $order->email;?></td>
-                <td><?= $pizza->name;?> Pizza</td>
+                <th><?= $order->id; ?></th>
+                <td><?= $order->first_name; ?></td>
+                <td><?= $order->last_name; ?></td>
+                <td><?= $order->contact_num; ?></td>
+                <td><?= $order->email; ?></td>
+                <td><?= $pizza->name; ?> Pizza</td>
             </tr>
         </tbody>
     </table>

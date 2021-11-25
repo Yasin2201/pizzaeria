@@ -194,13 +194,15 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionOrders() {
+    public function actionOrders()
+    {
         $orders = Orders::find()->all();
 
         return $this->render('orders', ['orders' => $orders]);
     }
 
-    public function actionView($id) {
+    public function actionView($id)
+    {
         $order = Orders::findOne($id);
         $pizza = Pizzas::findOne($order->pizza_id);
 

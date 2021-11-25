@@ -267,7 +267,9 @@ class SiteController extends Controller
 
     public function actionOrder($id) {
         $orders = new Orders();
-        if ($orders->load(Yii::$app->request->post()) && $orders->save()) {
+        if ($orders->load(Yii::$app->request->post())) {
+            $orders->pizza_id = $id;
+            $orders->save();
             Yii::$app->session->setFlash('success', 'Your Order Has Been Placed!');
             return $this->actionIndex();
         }
