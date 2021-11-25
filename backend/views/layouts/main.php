@@ -34,14 +34,14 @@ AppAsset::register($this);
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-    ];
+
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
     } else {
+        $menuItems[] = ['label' => 'Home', 'url' => ['/site/index']];
         $menuItems[] = ['label' => 'Pizzas', 'url' => ['/site/pizzas']];
+        $menuItems[] = ['label' => 'Orders', 'url' => ['/site/orders']];
         
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
