@@ -32,7 +32,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit', 'delete', 'orders'],
+                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit', 'delete', 'orders', 'view'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -198,5 +198,9 @@ class SiteController extends Controller
         $orders = Orders::find()->all();
 
         return $this->render('orders', ['orders' => $orders]);
+    }
+
+    public function actionView($id) {
+        return $this->render('view');
     }
 }
