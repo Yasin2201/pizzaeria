@@ -259,5 +259,8 @@ class SiteController extends Controller
         ]);
     }
 
-
+    public function actionView($id) {
+        $pizza = Pizzas::findOne($id);
+        return $this->render('view', ['pizza' => $pizza]);
+    }
 }
