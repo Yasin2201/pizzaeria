@@ -17,7 +17,7 @@ class m211125_104804_add_order_table extends Migration
             'pizza_id' => $this->integer()->notNull(),
             'first_name' => $this->string()->notNull(),
             'last_name' => $this->string()->notNull(),
-            'contact_num' => $this->integer()->notNull(),
+            'contact_num' => $this->string(11)->notNull(),
             'email' => $this->string()->notNull(),
         ]);
     }

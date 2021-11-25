@@ -18,7 +18,8 @@ class Orders extends ActiveRecord
             ['last_name', 'string', 'min' => 2, 'max' => 255],
 
             ['contact_num', 'required'],
-            ['contact_num', 'integer'],
+            ['contact_num', 'number'],
+            ['contact_num', 'string', 'min' => 11, 'max' => 11],
 
             ['email', 'trim'],
             ['email', 'required'],
