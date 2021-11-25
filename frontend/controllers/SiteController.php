@@ -16,7 +16,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use common\models\Pizzas;
-use frontend\models\Orders;
+use common\models\Orders;
 
 /**
  * Site controller
