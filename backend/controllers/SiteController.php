@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use backend\models\SignupForm;
 use common\models\Pizzas;
+use common\models\Orders;
 
 
 /**
@@ -194,6 +195,8 @@ class SiteController extends Controller
      * @return string
      */
     public function actionOrders() {
-        return $this->render('orders');
+        $orders = Orders::find()->all();
+
+        return $this->render('orders', ['orders' => $orders]);
     }
 }
