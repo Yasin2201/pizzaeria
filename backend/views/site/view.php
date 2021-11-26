@@ -1,4 +1,7 @@
 <?php
+
+use yii\helpers\Html;
+
 $this->title = "My Yii Application";
 ?>
 
@@ -14,6 +17,8 @@ $this->title = "My Yii Application";
                 <th scope="col">Contact Number</th>
                 <th scope="col">Email</th>
                 <th scope="col">Item Ordered</th>
+                <th scope="col">Order Status</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +29,8 @@ $this->title = "My Yii Application";
                 <td><?= $order->contact_num; ?></td>
                 <td><?= $order->email; ?></td>
                 <td><?= $pizza->name; ?> Pizza</td>
+                <td><?= $order->order_status; ?></td>
+                <td><?= Html::a('Edit', ['editorder', 'id' => $order->id], ['class' => 'btn btn-primary']) ?></td>
             </tr>
         </tbody>
     </table>
