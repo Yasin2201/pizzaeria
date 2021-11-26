@@ -77,8 +77,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $pizzas = Pizzas::find()->all();
-        return $this->render('index', ['pizzas' => $pizzas]);
+        return $this->render('index');
     }
 
     /**
@@ -260,12 +259,14 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionView($id) {
+    public function actionView($id)
+    {
         $pizza = Pizzas::findOne($id);
         return $this->render('view', ['pizza' => $pizza]);
     }
 
-    public function actionOrder($id) {
+    public function actionOrder($id)
+    {
         $orders = new Orders();
         if ($orders->load(Yii::$app->request->post())) {
             $orders->pizza_id = $id;
@@ -274,5 +275,15 @@ class SiteController extends Controller
             return $this->actionIndex();
         }
         return $this->render('order', ['orders' => $orders, 'pizza_id' => $id]);
+    }
+
+    /**
+     * Display All Pizzas Page
+     */
+
+    public function actionPizzas()
+    {
+        $pizzas = Pizzas::find()->all();
+        return $this->render('pizzas', ['pizzas' => $pizzas]);
     }
 }
