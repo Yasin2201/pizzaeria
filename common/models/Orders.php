@@ -30,4 +30,9 @@ class Orders extends ActiveRecord
             ['pizza_id', 'integer'],
         ];
     }
+
+    public function getPizzas()
+    {
+        return $this->hasOne(Pizzas::class, ['id' => 'pizza_id']);
+    }
 }
