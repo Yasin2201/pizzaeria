@@ -222,7 +222,13 @@ class SiteController extends Controller
     public function actionEditorder($id)
     {
         $order = Orders::findOne($id);
-
+        if ($order->load(Yii::$app->request->post())) {
+            $order->pizza_id = $order->pizza_id;
+            $order->id = $order->id;
+            $order->order_status = Yii::$app->request->post('Orders')['order_status'];
+            $order->save();
+            return $this->actionView($id);
+        }
         return $this->render('editorder', ['order' => $order]);
     }
 }
