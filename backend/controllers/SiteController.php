@@ -32,7 +32,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit', 'delete', 'orders', 'view', 'editorder'],
+                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit', 'delete', 'orders', 'view', 'editorder', 'dashboard'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -230,5 +230,15 @@ class SiteController extends Controller
             return $this->actionView($id);
         }
         return $this->render('editorder', ['order' => $order]);
+    }
+
+    /**
+     * Displays dashboard page.
+     *
+     * @return string
+     */
+    public function actionDashboard()
+    {
+        return $this->render('dashboard');
     }
 }
