@@ -32,7 +32,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit', 'delete', 'orders', 'view'],
+                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit', 'delete', 'orders', 'view', 'editorder'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -201,11 +201,28 @@ class SiteController extends Controller
         return $this->render('orders', ['orders' => $orders]);
     }
 
+    /**
+     * Displays specific order and details page.
+     *
+     * @return string
+     */
     public function actionView($id)
     {
         $order = Orders::findOne($id);
         $pizza = Pizzas::findOne($order->pizza_id);
 
         return $this->render('view', ['order' => $order, 'pizza' => $pizza]);
+    }
+
+    /**
+     * Displays order edit page.
+     *
+     * @return string
+     */
+    public function actionEditorder($id)
+    {
+        $order = Orders::findOne($id);
+
+        return $this->render('editorder', ['order' => $order]);
     }
 }
