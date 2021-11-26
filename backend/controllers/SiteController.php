@@ -239,6 +239,11 @@ class SiteController extends Controller
      */
     public function actionDashboard()
     {
-        return $this->render('dashboard');
+        $pizzas = Pizzas::find()->all();
+
+        return $this->render('dashboard', ['pizzas' => $pizzas]);
     }
 }
+
+// find all orders and select pizza_id distinict ->asArray()->all(); 
+// for each pizza_id find all orders where pizza_id = pizza_id then count($result)
