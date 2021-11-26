@@ -280,10 +280,17 @@ class SiteController extends Controller
     /**
      * Display All Pizzas Page
      */
-
     public function actionPizzas()
     {
         $pizzas = Pizzas::find()->all();
         return $this->render('pizzas', ['pizzas' => $pizzas]);
+    }
+
+    /**
+     * Display TrackOrder Page
+     */
+    public function actionTrackorder()
+    {
+        return $this->render('trackorder');
     }
 }
