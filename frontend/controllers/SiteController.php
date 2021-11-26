@@ -291,6 +291,19 @@ class SiteController extends Controller
      */
     public function actionTrackorder()
     {
-        return $this->render('trackorder');
+        $orderModel = new Orders;
+
+        if (Yii::$app->request->post()) {
+            $allOrders = Orders::find()->where(['contact_num' => Yii::$app->request->post('Orders')['contact_num']])->all();
+
+            if (!$allOrders) {
+                Yii::$app->session->setFlash('error', 'Contact number not found!');
+                return $this->render('trackorder', ['model' => $orderModel, 'orders' => null]);
+            } else {
+                return $this->render('trackorder', ['model' => $orderModel, 'orders' => $allOrders]);
+            }
+        }
+
+        return $this->render('trackorder', ['model' => $orderModel, 'orders' => null]);
     }
 }
