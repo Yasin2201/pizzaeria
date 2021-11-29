@@ -17,6 +17,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use common\models\Pizzas;
 use common\models\Orders;
+use frontend\models\CartItems;
 
 /**
  * Site controller
@@ -312,5 +313,19 @@ class SiteController extends Controller
         }
 
         return $this->render('trackorder', ['model' => $orderModel, 'orders' => null]);
+    }
+
+    /**
+     * Add item to cart
+     */
+
+    public function actionAddCart($id)
+    {
+        $cartItem = new CartItems();
+        $cartItem->cust_id = Yii::$app->session->get('currUser');
+        $cartItem->item_id = $id;
+        $cartItem->save();
+        Yii::$app->session->setFlash('success', 'Your item has been added to cart');
+        return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
     }
 }
