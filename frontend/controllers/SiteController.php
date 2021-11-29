@@ -16,6 +16,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use common\models\Pizzas;
+use common\models\Sides;
 use common\models\Orders;
 use common\models\CartItems;
 
@@ -338,5 +339,16 @@ class SiteController extends Controller
 
         Yii::$app->session->setFlash('success', 'Your item has been added to cart');
         return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
+    }
+
+    /*
+    * Displays Sides page.
+    *
+    * @return string
+    */
+    public function actionSides()
+    {
+        $sides = Sides::find()->all();
+        return $this->render('sides', ['sides' => $sides,]);
     }
 }
