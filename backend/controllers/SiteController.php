@@ -49,7 +49,8 @@ class SiteController extends Controller
                             'edit-topping',
                             'delete-topping',
                             'side',
-                            'create-side'
+                            'create-side',
+                            'edit-side'
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -356,5 +357,19 @@ class SiteController extends Controller
         }
 
         return $this->render('create-side', ['side' => $side]);
+    }
+
+    /**
+     * Displays Edit sides page and save edits.
+     *
+     * @return string
+     */
+    public function actionEditSide($id)
+    {
+        $side = Sides::findOne($id);
+        if ($side->load(Yii::$app->request->post()) && $side->save()) {
+            $this->redirect('side');
+        }
+        return $this->render('edit-side', ['side' => $side]);
     }
 }
