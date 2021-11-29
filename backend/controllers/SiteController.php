@@ -48,7 +48,8 @@ class SiteController extends Controller
                             'create-topping',
                             'edit-topping',
                             'delete-topping',
-                            'side'
+                            'side',
+                            'create-side'
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -326,7 +327,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays topping page.
+     * Displays sides page.
      *
      * @return string
      */
@@ -335,5 +336,25 @@ class SiteController extends Controller
         $sides = Sides::find()->all();
 
         return $this->render('side', ['sides' => $sides]);
+    }
+
+    /**
+     * Displays New side page and creates new sides.
+     *
+     * @return string
+     */
+    public function actionCreateSide()
+    {
+
+        $side = new Sides();
+
+        if (Yii::$app->request->post()) {
+            $side->load(Yii::$app->request->post());
+            if ($side->save()) {
+                $this->redirect('side');
+            }
+        }
+
+        return $this->render('create-side', ['side' => $side]);
     }
 }
