@@ -11,6 +11,7 @@ use yii\web\Response;
 use backend\models\SignupForm;
 use common\models\Pizzas;
 use common\models\Orders;
+use common\models\Sides;
 use common\models\Toppings;
 
 /**
@@ -46,7 +47,8 @@ class SiteController extends Controller
                             'topping',
                             'create-topping',
                             'edit-topping',
-                            'delete-topping'
+                            'delete-topping',
+                            'side'
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -321,5 +323,17 @@ class SiteController extends Controller
 
         $topping->delete();
         return $this->actionTopping();
+    }
+
+    /**
+     * Displays topping page.
+     *
+     * @return string
+     */
+    public function actionSide()
+    {
+        $sides = Sides::find()->all();
+
+        return $this->render('side', ['sides' => $sides]);
     }
 }
