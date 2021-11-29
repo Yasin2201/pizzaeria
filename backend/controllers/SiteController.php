@@ -50,7 +50,8 @@ class SiteController extends Controller
                             'delete-topping',
                             'side',
                             'create-side',
-                            'edit-side'
+                            'edit-side',
+                            'delete-side'
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -371,5 +372,22 @@ class SiteController extends Controller
             $this->redirect('side');
         }
         return $this->render('edit-side', ['side' => $side]);
+    }
+
+    /**
+     * Deletes side from list.
+     *
+     * @return string
+     */
+    public function actionDeleteSide($id)
+    {
+        $side = Sides::findOne($id);
+
+        if (!$side) {
+            return $this->actionSide();
+        }
+
+        $side->delete();
+        return $this->actionSide();
     }
 }
