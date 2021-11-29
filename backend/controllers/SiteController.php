@@ -32,7 +32,21 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit', 'delete', 'orders', 'view', 'editorder', 'dashboard', 'topping', 'create-topping'],
+                        'actions' => [
+                            'logout',
+                            'index',
+                            'pizzas',
+                            'create',
+                            'edit',
+                            'delete',
+                            'orders',
+                            'view',
+                            'editorder',
+                            'dashboard',
+                            'topping',
+                            'create-topping',
+                            'edit-topping'
+                        ],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -275,5 +289,19 @@ class SiteController extends Controller
         }
 
         return $this->render('create-topping', ['topping' => $topping]);
+    }
+
+    /**
+     * Displays Edit Topping page and save edits.
+     *
+     * @return string
+     */
+    public function actionEditTopping($id)
+    {
+        $topping = Toppings::findOne($id);
+        if ($topping->load(Yii::$app->request->post()) && $topping->save()) {
+            $this->redirect('topping');
+        }
+        return $this->render('edit-topping', ['topping' => $topping]);
     }
 }
