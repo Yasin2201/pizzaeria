@@ -43,6 +43,7 @@ AppAsset::register($this);
         } else {
             $menuItems[] = ['label' => 'Home', 'url' => ['/site/index']];
             $menuItems[] = ['label' => 'Pizzas', 'url' => ['/site/pizzas']];
+            $menuItems[] = ['label' => 'Toppings', 'url' => ['/site/topping']];
             $menuItems[] = ['label' => 'Orders', 'url' => ['/site/orders']];
             $menuItems[] = ['label' => 'Dashboard', 'url' => ['/site/dashboard']];
 
