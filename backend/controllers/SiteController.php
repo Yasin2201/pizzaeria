@@ -45,7 +45,8 @@ class SiteController extends Controller
                             'dashboard',
                             'topping',
                             'create-topping',
-                            'edit-topping'
+                            'edit-topping',
+                            'delete-topping'
                         ],
                         'allow' => true,
                         'roles' => ['@'],
@@ -303,5 +304,22 @@ class SiteController extends Controller
             $this->redirect('topping');
         }
         return $this->render('edit-topping', ['topping' => $topping]);
+    }
+
+    /**
+     * Deletes topping from list.
+     *
+     * @return string
+     */
+    public function actionDeleteTopping($id)
+    {
+        $topping = Toppings::findOne($id);
+
+        if (!$topping) {
+            return $this->actionTopping();
+        }
+
+        $topping->delete();
+        return $this->actionTopping();
     }
 }
