@@ -17,7 +17,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use common\models\Pizzas;
 use common\models\Orders;
-use frontend\models\CartItems;
+use common\models\CartItems;
 
 /**
  * Site controller
@@ -316,15 +316,26 @@ class SiteController extends Controller
     }
 
     /**
+     * Render cart page and show all items in users cart
+     */
+    public function actionCart()
+    {
+        $currUser = Yii::$app->session->get('currUser');
+        $cartItems = CartItems::find()->where(["cust_id" => $currUser])->all();
+        return $this->render('cart', ['cartItems' => $cartItems]);
+    }
+
+    /**
      * Add item to cart
      */
-
-    public function actionAddCart($id)
+    public function actionAddCart($id, $category)
     {
         $cartItem = new CartItems();
         $cartItem->cust_id = Yii::$app->session->get('currUser');
         $cartItem->item_id = $id;
+        $cartItem->category = $category;
         $cartItem->save();
+
         Yii::$app->session->setFlash('success', 'Your item has been added to cart');
         return $this->redirect(Yii::$app->request->referrer ?: Yii::$app->homeUrl);
     }
