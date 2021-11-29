@@ -351,4 +351,13 @@ class SiteController extends Controller
         $sides = Sides::find()->all();
         return $this->render('sides', ['sides' => $sides,]);
     }
+
+    /**
+     * View single side
+     */
+    public function actionViewSide($id)
+    {
+        $side = Sides::findOne($id);
+        return $this->render('view-side', ['side' => $side]);
+    }
 }
