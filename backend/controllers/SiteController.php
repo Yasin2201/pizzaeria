@@ -11,7 +11,7 @@ use yii\web\Response;
 use backend\models\SignupForm;
 use common\models\Pizzas;
 use common\models\Orders;
-
+use common\models\Toppings;
 
 /**
  * Site controller
@@ -32,7 +32,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit', 'delete', 'orders', 'view', 'editorder', 'dashboard'],
+                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit', 'delete', 'orders', 'view', 'editorder', 'dashboard', 'topping'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -243,7 +243,16 @@ class SiteController extends Controller
 
         return $this->render('dashboard', ['pizzas' => $pizzas]);
     }
-}
 
-// find all orders and select pizza_id distinict ->asArray()->all(); 
-// for each pizza_id find all orders where pizza_id = pizza_id then count($result)
+    /**
+     * Displays dashboard page.
+     *
+     * @return string
+     */
+    public function actionTopping()
+    {
+        $toppings = Toppings::find()->all();
+
+        return $this->render('topping', ['toppings' => $toppings]);
+    }
+}
