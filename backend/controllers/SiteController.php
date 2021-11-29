@@ -32,7 +32,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit', 'delete', 'orders', 'view', 'editorder', 'dashboard', 'topping'],
+                        'actions' => ['logout', 'index', 'pizzas', 'create', 'edit', 'delete', 'orders', 'view', 'editorder', 'dashboard', 'topping', 'create-topping'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -245,7 +245,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays dashboard page.
+     * Displays topping page.
      *
      * @return string
      */
@@ -254,5 +254,26 @@ class SiteController extends Controller
         $toppings = Toppings::find()->all();
 
         return $this->render('topping', ['toppings' => $toppings]);
+    }
+
+
+    /**
+     * Displays New Topping page and creates new toppings.
+     *
+     * @return string
+     */
+    public function actionCreateTopping()
+    {
+
+        $topping = new Toppings();
+
+        if (Yii::$app->request->post()) {
+            $topping->load(Yii::$app->request->post());
+            if ($topping->save()) {
+                $this->redirect('topping');
+            }
+        }
+
+        return $this->render('create-topping', ['topping' => $topping]);
     }
 }
