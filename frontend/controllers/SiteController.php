@@ -77,6 +77,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $session = Yii::$app->session;
+
+        if (!Yii::$app->session->get('currUser')) {
+            $sessionid = Yii::$app->session->getId();
+            $session->set('currUser', $sessionid);
+            return $this->render('index');
+        }
         return $this->render('index');
     }
 
