@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m211129_103356_new_topppings_table
+ * Class m211129_103632_new_toppings_table
  */
-class m211129_103356_new_topppings_table extends Migration
+class m211129_103632_new_toppings_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -36,7 +36,7 @@ class m211129_103356_new_topppings_table extends Migration
 
     public function down()
     {
-        echo "m211129_103356_new_topppings_table cannot be reverted.\n";
+        echo "m211129_103632_new_toppings_table cannot be reverted.\n";
 
         return false;
     }
