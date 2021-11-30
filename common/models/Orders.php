@@ -26,13 +26,6 @@ class Orders extends ActiveRecord
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
 
-            ['pizza_id', 'required'],
-            ['pizza_id', 'integer'],
         ];
-    }
-
-    public function getPizzas()
-    {
-        return $this->hasOne(Pizzas::class, ['id' => 'pizza_id']);
     }
 }
