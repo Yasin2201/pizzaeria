@@ -19,6 +19,7 @@ use common\models\Pizzas;
 use common\models\Sides;
 use common\models\Orders;
 use common\models\CartItems;
+use common\models\OrderItems;
 
 /**
  * Site controller
@@ -81,8 +82,8 @@ class SiteController extends Controller
     {
         $session = Yii::$app->session;
 
-        if (!Yii::$app->session->get('currUser')) {
-            $sessionid = Yii::$app->session->getId();
+        if (!$session->get('currUser')) {
+            $sessionid = $session->getId();
             $session->set('currUser', $sessionid);
             return $this->render('index');
         }
@@ -274,16 +275,26 @@ class SiteController extends Controller
         return $this->render('view', ['pizza' => $pizza]);
     }
 
-    public function actionOrder($id)
+    public function actionOrder()
     {
-        $orders = new Orders();
-        if ($orders->load(Yii::$app->request->post())) {
-            $orders->pizza_id = $id;
-            $orders->save();
-            Yii::$app->session->setFlash('success', 'Your Order Has Been Placed!');
+        $session = Yii::$app->session;
+        $currUserId = $session->get('currUser');
+        $order = new Orders();
+        $cartItems = CartItems::find()->where(['cust_id' => $currUserId])->all();
+        if ($order->load(Yii::$app->request->post())) {
+            $order->save();
+            foreach ($cartItems as $cartItem) {
+                $newOrderItem = new OrderItems();
+                $newOrderItem->order_ref = $order->id;
+                $newOrderItem->item_id = $cartItem->item_id;
+                $newOrderItem->item_category = $cartItem->category;
+                $newOrderItem->save();
+            }
+            CartItems::deleteAll(['cust_id' => $currUserId]);
+            $session->setFlash('success', 'Your Order Has Been Placed!');
             return $this->actionIndex();
         }
-        return $this->render('order', ['orders' => $orders, 'pizza_id' => $id]);
+        return $this->render('order', ['order' => $order]);
     }
 
     /**
@@ -361,3 +372,8 @@ class SiteController extends Controller
         return $this->render('view-side', ['side' => $side]);
     }
 }
+
+// Create action that takes to order page
+// use users session id to check cart items table
+// push all items into orders items table
+// create order for those items
