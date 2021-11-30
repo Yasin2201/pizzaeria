@@ -9,6 +9,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use backend\models\SignupForm;
+use common\models\OrderItems;
 use common\models\Pizzas;
 use common\models\Orders;
 use common\models\Sides;
@@ -229,9 +230,8 @@ class SiteController extends Controller
     public function actionView($id)
     {
         $order = Orders::findOne($id);
-        $pizza = Pizzas::findOne($order->pizza_id);
-
-        return $this->render('view', ['order' => $order, 'pizza' => $pizza]);
+        $orderedItems = OrderItems::find()->where(['order_ref' => $id])->all();
+        return $this->render('view', ['order' => $order, 'orderedItems' => $orderedItems]);
     }
 
     /**
@@ -243,7 +243,6 @@ class SiteController extends Controller
     {
         $order = Orders::findOne($id);
         if ($order->load(Yii::$app->request->post())) {
-            $order->pizza_id = $order->pizza_id;
             $order->id = $order->id;
             $order->order_status = Yii::$app->request->post('Orders')['order_status'];
             $order->save();
