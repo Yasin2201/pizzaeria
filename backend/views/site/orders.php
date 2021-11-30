@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 
 $this->title = "My Yii Application";
@@ -11,7 +12,6 @@ $this->title = "My Yii Application";
         <thead>
             <tr>
                 <th scope="col">Order ID</th>
-                <th scope="col">Item ID</th>
                 <th scope="col">Customer Name</th>
                 <th scope="col">Action</th>
             </tr>
@@ -20,7 +20,6 @@ $this->title = "My Yii Application";
             <?php foreach ($orders as $order) : ?>
                 <tr>
                     <th scope="row"><?= $order->id; ?></th>
-                    <td><?= $order->pizza_id; ?></td>
                     <td><?= $order->first_name . " " . $order->last_name; ?></td>
                     <td><?= Html::a('View', ['view', 'id' => $order->id], ['class' => 'btn btn-primary']) ?> </td>
                 </tr>
