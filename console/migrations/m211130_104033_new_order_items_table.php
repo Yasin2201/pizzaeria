@@ -14,8 +14,8 @@ class m211130_104033_new_order_items_table extends Migration
     {
         $this->createTable('order_items', [
             'id' => $this->primaryKey(),
-            'order_ref' => $this->integer()->notNull(),
-            'item_id' => $this->integer()->notNull(),
+            'order_ref' => $this->string()->notNull(),
+            'item_id' => $this->string()->notNull(),
             'item_category' => $this->string()->notNull(),
         ]);
     }
