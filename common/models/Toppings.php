@@ -19,4 +19,8 @@ class Toppings extends ActiveRecord
             ['description', 'string', 'min' => 2, 'max' => 255],
         ];
     }
+    public function getOrders()
+    {
+        return $this->hasMany(OrderItems::class, ['item_id' => 'id', 'item_category' => 'category']);
+    }
 }

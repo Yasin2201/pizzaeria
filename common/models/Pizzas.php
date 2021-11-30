@@ -19,9 +19,8 @@ class Pizzas extends ActiveRecord
             ['description', 'string', 'min' => 2, 'max' => 255],
         ];
     }
-
     public function getOrders()
     {
-        return $this->hasMany(Orders::class, ['pizza_id' => 'id']);
+        return $this->hasMany(OrderItems::class, ['item_id' => 'id', 'item_category' => 'category']);
     }
 }
