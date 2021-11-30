@@ -259,8 +259,9 @@ class SiteController extends Controller
     public function actionDashboard()
     {
         $pizzas = Pizzas::find()->all();
-
-        return $this->render('dashboard', ['pizzas' => $pizzas]);
+        $sides = Sides::find()->all();
+        $toppings = Toppings::find()->all();
+        return $this->render('dashboard', ['pizzas' => $pizzas, 'sides' => $sides, 'toppings' => $toppings]);
     }
 
     /**
