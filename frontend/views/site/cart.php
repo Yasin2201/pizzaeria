@@ -1,4 +1,7 @@
 <?php
+
+use yii\helpers\Html;
+
 $this->title = "My Yii Application";
 ?>
 
@@ -55,4 +58,8 @@ $this->title = "My Yii Application";
             <?php endforeach; ?>
         </tbody>
     </table>
+    <?php if ($cartItems) { ?>
+        <?= Html::a('Order', ['order'], ['class' => 'btn btn-primary']) ?>
+    <?php } ?>
+
 </div>
