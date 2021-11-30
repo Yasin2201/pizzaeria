@@ -16,25 +16,25 @@ $this->title = "My Yii Application";
             <div class="form-group">
                 <?=
                 $form
-                    ->field($orders, 'first_name')
+                    ->field($order, 'first_name')
                     ->textInput();
                 ?>
 
                 <?=
                 $form
-                    ->field($orders, 'last_name')
+                    ->field($order, 'last_name')
                     ->textInput();
                 ?>
 
                 <?=
                 $form
-                    ->field($orders, 'email')
+                    ->field($order, 'email')
                     ->input('email');
                 ?>
 
                 <?=
                 $form
-                    ->field($orders, 'contact_num')
+                    ->field($order, 'contact_num')
                     ->textInput();
                 ?>
 
