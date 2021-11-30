@@ -23,5 +23,37 @@ $this->title = "My Yii Application";
                 </td>
             </tr>
         <?php } ?>
+        <thead>
+            <tr>
+                <th scope="col">Side</th>
+                <th scope="col">Ordered Total</th>
+            </tr>
+        </thead>
+        <?php foreach ($sides as $side) { ?>
+            <tr>
+                <td>
+                    <?= $side->name ?>
+                </td>
+                <td>
+                    <?= count($side->orders) ?>
+                </td>
+            </tr>
+        <?php } ?>
+        <thead>
+            <tr>
+                <th scope="col">Topping</th>
+                <th scope="col">Ordered Total</th>
+            </tr>
+        </thead>
+        <?php foreach ($toppings as $topping) { ?>
+            <tr>
+                <td>
+                    <?= $topping->name ?>
+                </td>
+                <td>
+                    <?= count($topping->orders) ?>
+                </td>
+            </tr>
+        <?php } ?>
     </table>
 </div>
